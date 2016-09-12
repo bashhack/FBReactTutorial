@@ -14,12 +14,6 @@
   <body>
     <div id="content"></div>
     <script type="text/babel">
-      var data = [
-        {id: 1, author: "Marc Laughton", text: "Wherever you go, there you are..."},
-        {id: 2, author: "Becky Laughton", text: "Art is for everybody!"},
-        {id: 3, author: "Geddy Laughton", text: "Bark! Bark! Bark!"}
-      ];
-
       var Comment = React.createClass({
         rawMarkup: function () {
           var md = new Remarkable();
@@ -67,18 +61,43 @@
       });
 
       var CommentBox = React.createClass({
+        loadCommentsFromServer: function () {
+           $.ajax({
+            url: this.props.url,
+            dataType: 'json',
+            cache: false,
+            success: function (data) {
+              this.setState({ data: data })
+            }.bind(this),
+            error: function (xhr, status, err) {
+              console.error(this.props.url, status, err.toString());
+            }.bind(this)
+          });
+        },
+
+        getInitialState: function () {
+          return {
+            data: []
+          };
+        },
+
+        componentDidMount: function () {
+          this.loadCommentsFromServer();
+          setInterval(this.loadCommentsFromServer, this.props.pollInterval);
+        },
+
         render: function () {
           return (
             <div className="commentBox">
               <h1>Comments Component</h1>
-              <CommentList data={this.props.data}/>
+              <CommentList data={this.state.data}/>
               <CommentForm />
             </div>
           );
         }
       });
 
-      ReactDOM.render(<CommentBox data={data}/>, document.getElementById('content'));
+      ReactDOM.render(<CommentBox url="/api/comments" pollInterval={2000}/>, document.getElementById('content'));
     </script>
   </body>
 </html>

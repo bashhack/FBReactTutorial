@@ -1,12 +1,17 @@
 [
     {
         "id": 1388534400000,
-        "author": "Pete Hunt",
-        "text": "Hey there!"
+        "author": "Marc Laughton",
+        "text": "Wherever you go, there you are..."
     },
     {
         "id": 1420070400000,
-        "author": "Paul O’Shannessy",
-        "text": "React is *great*!"
+        "author": "Becky Laughton",
+        "text": "Art is for everybody!"
+    },
+    {
+        "id": 1420048200000,
+        "author": "Geddy Laughton",
+        "text": "Bark! Bark! Bark!"
     }
 ]
