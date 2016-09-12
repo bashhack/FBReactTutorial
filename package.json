@@ -1,0 +1,26 @@
+{
+  "name": "FacebookReact",
+  "version": "0.0.0",
+  "private": false,
+  "license": "MIT",
+  "description": "Working through the Facebook React tutorial",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.4.3",
+    "express": "^4.4.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "react",
+    "tutorial",
+    "comment",
+    "example"
+  ],
+  "engines": {
+    "node": "0.12.x"
+  }
+}
