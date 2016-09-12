@@ -68,9 +68,19 @@
           this.setState({ text: text })
         },
 
+        handleSubmit: function (e) {
+          e.preventDefault();
+
+          var author = this.state.author.trim(),
+              text = this.state.text.trim();
+          if (!text || !author) return;
+          // TODO: Send req to the server
+          this.setState({ author: '', text: '' })
+        },
+
         render: function () {
           return (
-            <form className="commentForm">
+            <form className="commentForm" onSubmit={this.handleSubmit}>
               <input type="text"
                      value={this.state.author}
                      placeholder="Your name..."
@@ -100,6 +110,10 @@
           });
         },
 
+        handleCommentSubmit: function () {
+          // TODO: Submit to server, refresh list
+        },
+
         getInitialState: function () {
           return {
             data: []
@@ -115,8 +129,8 @@
           return (
             <div className="commentBox">
               <h1>Comments Component</h1>
-              <CommentList data={this.state.data}/>
-              <CommentForm />
+              <CommentList data={this.state.data} />
+              <CommentForm onCommentSubmit={this.handleCommentSubmit} />
             </div>
           );
         }
